@@ -57,32 +57,22 @@ export default {
       collapse: false,
       items: [
         {
-          icon: 'el-icon-map-location',
-          index: 'Map',
-          title: '轨迹地图'
-        },
-        {
-          icon: 'el-icon-map-location',
-          index: 'DotMarker',
-          title: '动态地图'
-        },
-        {
-          icon: 'el-icon-map-location',
+          icon: 'el-icon-s-flag',
           index: 'HeatMap',
           title: '实时热力图'
         },
         {
-          icon: 'el-icon-map-location',
+          icon: 'el-icon-s-home',
           index: 'OutHeatMap',
           title: '离线热力图'
         },
         {
-          icon: 'el-icon-map-location',
+          icon: 'el-icon-s-promotion',
           index: 'TripAnalysis',
           title: '出行分析'
         },
         {
-          icon: 'el-icon-map-location',
+          icon: 'el-icon-s-marketing',
           index: 'TripMode',
           title: '交通量预测'
         },
@@ -119,10 +109,10 @@ export default {
     overflow-y: scroll;
 }
 .sidebar::-webkit-scrollbar {
-    width: 0;
+    width: 10px;
 }
 .sidebar-el-menu:not(.el-menu--collapse) {
-    width: 150px;
+    width: 200px;
 }
 .sidebar > ul {
     height: 100%;

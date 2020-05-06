@@ -1,7 +1,5 @@
 <template>
     <div class="header">
-        <!-- 报告抽屉 -->
-        <Drawer :drawer="drawer" @changeDrawer="changeDrawer"/>
         <!-- 折叠按钮 -->
         <div class="collapse-btn" @click="collapseChage">
             <i v-if="!collapse" class="el-icon-s-fold"></i>
@@ -36,20 +34,13 @@
 </template>
 <script>
 import bus from '../common/bus'
-import Drawer from "../tools/Drawer";
-import html2canvas from "html2canvas";
 export default {
-  components: {
-    Drawer
-  },
   data () {
     return {
       collapse: false,
       fullscreen: false,
-      name: 'linxin',
-      message: 2,
-      drawer: false,
-      imgUrl: ''
+      name: 'huangguang',
+      message: 2
     }
   },
   computed: {

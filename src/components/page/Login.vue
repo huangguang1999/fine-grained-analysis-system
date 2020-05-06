@@ -43,7 +43,7 @@ export default {
   methods: {
     submitForm () {
       this.$refs.login.validate(valid => {
-        if (valid) {
+        if (valid && this.login(this.param.username, this.param.password)) {
           this.$message.success('登录成功')
           localStorage.setItem('ms_username', this.param.username)
           this.$router.push('/map')
@@ -53,6 +53,19 @@ export default {
           return false
         }
       })
+    },
+    // 鉴权
+    login (username, password) {
+      // this.$ajax.post('api/login').then((response) => {
+      //   const resUser = ''
+      //   const resPass = ''
+      //   if (username === resUser && password === resPass) {
+      //     return true
+      //   } else {
+      //     return false
+      //   }
+      // })
+      return true
     }
   }
 }

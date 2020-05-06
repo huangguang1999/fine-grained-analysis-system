@@ -1,5 +1,6 @@
 <template>
   <div ref="imageWrapper">
+    <!--悬浮部分-->
     <Drawer :drawer="drawer" @changeDrawer="changeDrawer" :imgUrl=imgUrl />
     <div class="ranking-left">
       <h2>出行站点使用量排名</h2>
@@ -26,19 +27,23 @@
         <span>54231吨</span>
       </div>
     </div>
-    <el-card body-style="padding:0;"  class="mode-header">
-      <div style="display:flex;justify-content: center;align-items: center">
-        <div><h1>沈阳交通量预测</h1></div>
+    <!--主体部分-->
+    <el-card body-style="padding:0;">
+      <div class="mode-header">
+        <div class="mode-datetime">
+          <Datetime></Datetime>
+        </div>
+        <div class="mode-header-title">
+          <h1>沈阳交通量预测</h1>
+        </div>
+        <div class="mode-right">
+          <el-button type="info">用户反馈</el-button>
+          <el-button type="success" @click="outPdf">分析报告</el-button>
+        </div>
       </div>
-      <div class="mode-right">
-        <el-button type="info">用户反馈</el-button>
-        <el-button type="success" @click="outPdf">分析报告</el-button>
-      </div>
-      <div class="mode-datetime"><Datetime></Datetime></div>
     </el-card>
-    <el-card>
-      <div id="container"></div>
-    </el-card>
+    <!--地图部分-->
+    <div id="container"></div>
   </div>
 </template>
 
@@ -46,8 +51,8 @@
 import Datetime from '../common/Datetime'
 import RankingList from '../tools/RankingList'
 import Pie from '../echarts/Pie'
-import Drawer from "../tools/Drawer";
-import html2canvas from "html2canvas"
+import Drawer from '../tools/Drawer'
+import html2canvas from 'html2canvas'
 export default {
   components: {
     Datetime,
@@ -60,60 +65,34 @@ export default {
       map: {},
       tableData: [
         {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '和平区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '沈河区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '皇姑区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '大东区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '铁西区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '浑南区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '于洪区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '沈北新区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '苏家屯区',
           space: '31.97'
         }, {
-          station: '新乡市',
-          situaction: '80.5%',
-          space: '31.97'
-        }, {
-          station: '新乡市',
-          situaction: '80.5%',
-          space: '31.97'
-        }, {
-          station: '新乡市',
-          situaction: '80.5%',
-          space: '31.97'
-        }, {
-          station: '新乡市',
-          situaction: '80.5%',
-          space: '31.97'
-        }, {
-          station: '新乡市',
-          situaction: '80.5%',
+          station: '辽中区',
           space: '31.97'
         }
       ],
@@ -123,66 +102,50 @@ export default {
           label: '站名',
           width: '100'
         }, {
-          prop: 'situaction',
-          label: '使用情况',
-          width: '100'
-        }, {
           prop: 'space',
-          label: '均速(km/h)',
+          label: '平均交通量',
           width: '100'
         }
       ],
       tableDataG: [
         {
-          city: '新乡市',
+          city: '和平区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '沈河区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '皇姑区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '大东区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '铁西区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '浑南区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '于洪区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '沈北新区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
+          city: '苏家屯区',
           gomode: '80.5%',
           space: '31.97'
         }, {
-          city: '新乡市',
-          gomode: '80.5%',
-          space: '31.97'
-        }, {
-          city: '新乡市',
-          gomode: '80.5%',
-          space: '31.97'
-        }, {
-          city: '新乡市',
-          gomode: '80.5%',
-          space: '31.97'
-        }, {
-          city: '新乡市',
+          city: '辽中区',
           gomode: '80.5%',
           space: '31.97'
         }
@@ -194,7 +157,7 @@ export default {
           width: '100'
         }, {
           prop: 'gomode',
-          label: '出行方式占比',
+          label: '公交使用率',
           width: '100'
         }, {
           prop: 'space',
@@ -211,7 +174,6 @@ export default {
   },
   methods: {
     initMap () {
-      var that = this
       // eslint-disable-next-line no-undef
       this.map = new AMap.Map('container', {
         resizeEnable: true,
@@ -225,13 +187,13 @@ export default {
       this.drawer = true
       let that = this
       html2canvas(this.$refs.imageWrapper).then(canvas => {
-        let dataURL = canvas.toDataURL("image/png");
-        that.imgUrl = dataURL;
+        let dataURL = canvas.toDataURL("image/png")
+        that.imgUrl = dataURL
         // if (that.imgUrl !== "") {
         //   that.dialogTableVisible = true;
         // }
         console.log(that.imgUrl)
-      });
+      })
     },
     changeDrawer (value) {
       this.drawer = value
@@ -240,41 +202,36 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped >
   #container {
     width: 100%;
-    height: 550px;
+    height: 1000px;
   }
 
   .mode-header {
+    display: flex;
+    width: 100%;
     margin-bottom:2px;
-  }
 
-  .mode-header:after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    background-color: #ffffff;
-    left: 43%;
-  }
+    .mode-datetime {
+      width: 180px;
+      margin: auto 0;
+    }
 
-  .mode-datetime {
-    position: absolute;
-    top: 60px;
-    left: 44.5%;
-    z-index: 10;
-  }
+    .mode-header-title {
+      width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-  .mode-right {
-    position: absolute;
-    right: 30px;
-    top: 25px;
+    .mode-right {
+      margin: auto 10px auto 0;
+    }
   }
 
   .ranking-left {
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     left: 0px;
     background-color: #dddddd;
     z-index: 10;
@@ -294,9 +251,8 @@ export default {
 
   .pie {
     position: absolute;
-    bottom: 150px;
-    left: 60px;
-    width: 400px;
+    bottom: 300px;
+    width: 700px;
     height: 400px;
     z-index: 999;
   }
@@ -306,7 +262,7 @@ export default {
     height: 100px;
     position: absolute;
     left: 36%;
-    top: 25%;
+    top: 10%;
     display: flex;
     z-index: 10;
   }

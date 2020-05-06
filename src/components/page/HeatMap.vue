@@ -2,14 +2,12 @@
   <div style="width:100%;height:105%;overflow:hidden">
     <el-card body-style="padding:0;" style="margin-bottom:2px;">
       <div style="display:flex">
-        <div style="width:47%;"><Datetime></Datetime></div>
-        <div style="width:6%;color:#19CAAD;font-size:20px;display:flex;justify-content:center;align-items:center">实时</div>
-        <div style="width:47%;float:left;display:flex;align-items:center"><el-checkbox v-model="checked">每五分钟自动刷新</el-checkbox></div>
+        <div style="width:40%;"><Datetime></Datetime></div>
+        <div style="width:20%;color:#19CAAD;font-size:30px;display:flex;justify-content:center;align-items:center">实时热力图</div>
+        <div style="width:40%;float:left;display:flex;align-items:center"><el-checkbox v-model="checked">每五分钟自动刷新</el-checkbox></div>
       </div>
     </el-card>
-    <el-card>
-      <div id="container"></div>
-    </el-card>
+    <div id="container"></div>
 <!--    <el-card body-style="padding:0;" style="height:30%;position:absolute;top:5px;left:5px;">-->
 <!--      <RadarChart :items="items"></RadarChart>-->
 <!--    </el-card>-->
@@ -116,7 +114,7 @@ export default {
       // eslint-disable-next-line no-undef
       this.map = new AMap.Map('container', {
         resizeEnable: true,
-        center: [123.5, 41.75],
+        center: [123.5, 41.72],
         zoom: 12
       })
       this.updateData()
@@ -137,13 +135,7 @@ export default {
     },
     // 实时渲染热力图
     renderMap () {
-      request({
-        method: 'get',
-        url: '/getdata'
-      })
-        .then(res => {
-          this.heatmapData = res
-        })
+      //
     },
     loopingData () {
       this.timer = setInterval(() => {
@@ -189,6 +181,6 @@ export default {
 <style scoped>
 #container {
   width: 100%;
-  height: 550px;
+  height: 1000px;
 }
 </style>

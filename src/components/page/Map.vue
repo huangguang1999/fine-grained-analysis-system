@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-card>
       <div id="container"></div>
-    </el-card>
   </div>
 </template>
 
@@ -13,6 +11,7 @@ export default {
     }
   },
   mounted () {
+    this.resize()
     this.initMap()
   },
   methods: {
@@ -363,6 +362,12 @@ export default {
           navgName.start()
         }
       })
+    },
+    resize () {
+      // const canvas = document.getElementById('container')
+      // const ctx = canvas.getContext('2d')
+      // canvas.setAttribute('width', window.innerWidth + '')
+      // canvas.setAttribute('height', window.innerHeight + '')
     }
   }
 }
@@ -371,6 +376,6 @@ export default {
 <style scoped>
   #container {
     width: 100%;
-    height: 600px;
+    height: 1000px;
   }
 </style>

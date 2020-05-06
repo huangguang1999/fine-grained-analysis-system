@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <v-head></v-head>
+        <v-head class="header"></v-head>
         <v-sidebar></v-sidebar>
         <div class="content-box" :class="{'content-collapse':collapse}" ref="imageWrapper">
             <div class="content">
@@ -40,7 +40,7 @@ export default {
 <style scoped>
     .content-box {
         position: absolute;
-        left: 150px;
+        left: 200px;
         right: 0;
         top: 70px;
         bottom: 0;
@@ -53,7 +53,6 @@ export default {
     .content {
         width: auto;
         height: 100%;
-        padding: 10px;
         box-sizing: border-box;
     }
     .content-collapse {

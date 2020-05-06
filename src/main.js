@@ -8,8 +8,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './mock/mock.js'
 import echarts from 'echarts'
 import axios from 'axios'
+import htmlToPdf from './components/utils/htmlToPdf'
 Vue.prototype.$ajax = axios
 Vue.prototype.$echarts = echarts
+Vue.use(htmlToPdf)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -17,16 +19,11 @@ Vue.config.productionTip = false
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title}` || 'vue-analysis-system'
   const role = localStorage.getItem('ms_username')
+  // 判断里面可以根据role跳转不同路由，相当于不同角色有不同的身份
   if (!role && to.path !== '/login') {
     next('/login')
   } else {
-    if (navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor') {
-      Vue.prototype.$alert('vue-quill-editor组件不兼容IE10及以下浏览器，请使用更高版本的浏览器查看', '浏览器不兼容通知', {
-        confirmButtonText: '确定'
-      })
-    } else {
-      next()
-    }
+    next()
   }
 })
 
