@@ -40,7 +40,7 @@ export default {
 <style scoped>
     .content-box {
         position: absolute;
-        left: 200px;
+        left: 148px;
         right: 0;
         top: 70px;
         bottom: 0;

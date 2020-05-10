@@ -37,7 +37,7 @@
           <h1>沈阳交通量预测</h1>
         </div>
         <div class="mode-right">
-          <el-button type="info">用户反馈</el-button>
+          <router-link to="/Tinymce"><el-button type="info">用户反馈</el-button></router-link>
           <el-button type="success" @click="outPdf">分析报告</el-button>
         </div>
       </div>
@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import Datetime from '../common/Datetime'
-import RankingList from '../tools/RankingList'
-import Pie from '../echarts/Pie'
-import Drawer from '../tools/Drawer'
+import Datetime from '../components/common/Datetime'
+import RankingList from '../components/tools/RankingList'
+import Pie from '../components/echarts/Pie'
+import Drawer from '../components/tools/Drawer'
 import html2canvas from 'html2canvas'
 export default {
   components: {
@@ -66,34 +66,34 @@ export default {
       tableData: [
         {
           station: '和平区',
-          space: '31.97'
+          space: '61.97'
         }, {
           station: '沈河区',
-          space: '31.97'
+          space: '41.37'
         }, {
           station: '皇姑区',
-          space: '31.97'
+          space: '41.57'
         }, {
           station: '大东区',
-          space: '31.97'
+          space: '37.86'
         }, {
           station: '铁西区',
-          space: '31.97'
+          space: '73.54'
         }, {
           station: '浑南区',
-          space: '31.97'
+          space: '12.54'
         }, {
           station: '于洪区',
-          space: '31.97'
+          space: '75.32'
         }, {
           station: '沈北新区',
-          space: '31.97'
+          space: '63.47'
         }, {
           station: '苏家屯区',
-          space: '31.97'
+          space: '92.32'
         }, {
           station: '辽中区',
-          space: '31.97'
+          space: '72.23'
         }
       ],
       tableColumn: [
@@ -110,44 +110,44 @@ export default {
       tableDataG: [
         {
           city: '和平区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '35.5%',
+          space: '64.97'
         }, {
           city: '沈河区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '46.3%',
+          space: '86.23'
         }, {
           city: '皇姑区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '32.7%',
+          space: '26.34'
         }, {
           city: '大东区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '63.8%',
+          space: '73.34'
         }, {
           city: '铁西区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '74.4%',
+          space: '64.23'
         }, {
           city: '浑南区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '85.2%',
+          space: '64.76'
         }, {
           city: '于洪区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '85.5%',
+          space: '25.63'
         }, {
           city: '沈北新区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '74.2%',
+          space: '73.35'
         }, {
           city: '苏家屯区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '37.3%',
+          space: '73.43'
         }, {
           city: '辽中区',
-          gomode: '80.5%',
-          space: '31.97'
+          gomode: '63.5%',
+          space: '33.43'
         }
       ],
       tableColumnG: [

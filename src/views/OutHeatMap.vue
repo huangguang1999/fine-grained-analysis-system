@@ -1,7 +1,7 @@
 <template>
   <div style="width:100%;">
     <el-card body-style="padding:10px;" style="margin-bottom:2px;">
-      <div style="display:flex;height:40px;align-items:center;" class="header">
+      <div style="display:flex;height:40px;align-items:center;justify-content: center" class="header">
         <div style="margin-right:10px">
           <span class="demonstration">省份</span>
           <el-select v-model="pvalue" size="medium">
@@ -51,51 +51,52 @@
         </div>
       </div>
     </el-card>
-    <el-card body-style="padding:10px;">
-      <div id="container"></div>
-      <div class="block">
-        <el-slider
-          v-model="valueSlider"
-          :step="step"
-          :max="max"
-          :format-tooltip="formatTooltip"
-        >
-        </el-slider>
-      </div>
-      <div style="display: flex;font-weight: bold;font-size: 14px;">
-        <div class="timeItem1" style="margin-left: -10px">00:00</div>
-        <div class="timeItem2">01:00</div>
-        <div class="timeItem1">02:00</div>
-        <div class="timeItem2">03:00</div>
-        <div class="timeItem1">04:00</div>
-        <div class="timeItem2">05:00</div>
-        <div class="timeItem1">06:00</div>
-        <div class="timeItem2">07:00</div>
-        <div class="timeItem1">08:00</div>
-        <div class="timeItem2">09:00</div>
-        <div class="timeItem1">10:00</div>
-        <div class="timeItem2">11:00</div>
-        <div class="timeItem1">12:00</div>
-        <div class="timeItem2">13:00</div>
-        <div class="timeItem1">14:00</div>
-        <div class="timeItem2">15:00</div>
-        <div class="timeItem1">16:00</div>
-        <div class="timeItem2">17:00</div>
-        <div class="timeItem1">18:00</div>
-        <div class="timeItem2">19:00</div>
-        <div class="timeItem1">20:00</div>
-        <div class="timeItem2">21:00</div>
-        <div class="timeItem1">22:00</div>
-        <div class="timeItem2">23:00</div>
-        <div class="timeItem1" style="margin-right: -10px">24:00</div>
+    <div id="container"></div>
+    <el-card body-style="padding:10px;" class="content-footer" >
+      <div class="time-content">
+        <div class="time-block">
+          <el-slider
+            v-model="valueSlider"
+            :step="step"
+            :max="max"
+            :format-tooltip="formatTooltip"
+          >
+          </el-slider>
+        </div>
+        <div class="time-text">
+          <div class="timeItem1" style="margin-left: -10px">00:00</div>
+          <div class="timeItem2">01:00</div>
+          <div class="timeItem1">02:00</div>
+          <div class="timeItem2">03:00</div>
+          <div class="timeItem1">04:00</div>
+          <div class="timeItem2">05:00</div>
+          <div class="timeItem1">06:00</div>
+          <div class="timeItem2">07:00</div>
+          <div class="timeItem1">08:00</div>
+          <div class="timeItem2">09:00</div>
+          <div class="timeItem1">10:00</div>
+          <div class="timeItem2">11:00</div>
+          <div class="timeItem1">12:00</div>
+          <div class="timeItem2">13:00</div>
+          <div class="timeItem1">14:00</div>
+          <div class="timeItem2">15:00</div>
+          <div class="timeItem1">16:00</div>
+          <div class="timeItem2">17:00</div>
+          <div class="timeItem1">18:00</div>
+          <div class="timeItem2">19:00</div>
+          <div class="timeItem1">20:00</div>
+          <div class="timeItem2">21:00</div>
+          <div class="timeItem1">22:00</div>
+          <div class="timeItem2">23:00</div>
+          <div class="timeItem1" style="margin-right: -10px">24:00</div>
+        </div>
       </div>
     </el-card>
-
   </div>
 </template>
 
 <script>
-import request from '../../axios/index'
+import request from '../axios'
 export default {
   components: {
     request
@@ -310,17 +311,42 @@ export default {
 <style scoped>
   #container {
     width: 100%;
-    height: 500px;
+    height: 1000px;
   }
+
   .header {
     font-size: 15px;
     color: #19CAAD;
   }
+
   .timeItem1 {
     padding-right: 19.5px
   }
+
   .timeItem2 {
     color: #19CAAD;
     padding-right: 19.5px
+  }
+
+  .content-footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+  }
+
+  .time-content {
+    width: 1400px;
+    margin: 0 auto;
+  }
+
+  .time-block {
+    width: 1350px;
+  }
+
+  .time-text {
+    width: 1300px;
+    display: flex;
+    font-weight: bold;
+    font-size: 14px;
   }
 </style>

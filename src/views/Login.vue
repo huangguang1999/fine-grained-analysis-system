@@ -46,7 +46,7 @@ export default {
         if (valid && this.login(this.param.username, this.param.password)) {
           this.$message.success('登录成功')
           localStorage.setItem('ms_username', this.param.username)
-          this.$router.push('/map')
+          this.$router.push('/heatmap')
         } else {
           this.$message.error('请输入账号和密码')
           console.log('error submit!!')
@@ -76,9 +76,9 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/img/login-bg.jpg);
+    background-image: url(../assets/img/bg.png);
     background-size: 100%;
-    background-position-y: -800%;
+    background-color: #33baff;
 }
 .ms-title {
     width: 100%;
@@ -95,7 +95,7 @@ export default {
     width: 350px;
     margin: -190px 0 0 -175px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(245, 245, 245, 0.5);
     overflow: hidden;
 }
 .ms-content {

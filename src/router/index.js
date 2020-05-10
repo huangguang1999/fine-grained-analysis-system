@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '../components/page/Login'
-import Map from '../components/page/Map'
-import TDMap from '../components/page/3DMap'
+import Login from '../views/Login'
+import Map from '../views/Map'
+import TDMap from '../views/3DMap'
 import Home from '../components/common/Home'
-import DotMarker from '../components/page/DotMarker'
-import HeatMap from '../components/page/HeatMap'
-import TDHeatMap from '../components/page/3DHeatMap'
-import OutHeatMap from '../components/page/OutHeatMap'
-import TripAnalysis from '../components/page/TripAnalysis'
-import TripMode from '../components/page/TripMode'
-import ReAnalysis from '../components/page/ReAnalysis'
-import F04 from '../components/page/404'
+import DotMarker from '../views/DotMarker'
+import HeatMap from '../views/HeatMap'
+import TDHeatMap from '../views/3DHeatMap'
+import OutHeatMap from '../views/OutHeatMap'
+import TripAnalysis from '../views/TripAnalysis'
+import TripMode from '../views/TripMode'
+import ReAnalysis from '../views/ReAnalysis'
+import Tinymce from '../views/Tinymce'
+import F04 from '../views/404'
 Vue.use(Router)
 
 export default new Router({
@@ -24,21 +25,6 @@ export default new Router({
       path: '/',
       component: Home,
       children: [
-        {
-          path: '/map',
-          component: Map,
-          meta: { title: '轨迹地图' }
-        },
-        {
-          path: '/3dmap',
-          component: TDMap,
-          meta: { title: '3D地图' }
-        },
-        {
-          path: '/dotMarker',
-          component: DotMarker,
-          meta: { title: '动态地图' }
-        },
         {
           path: '/heatMap',
           component: HeatMap,
@@ -68,6 +54,11 @@ export default new Router({
           path: '/ReAnalysis',
           component: ReAnalysis,
           meta: { title: '驻留分析' }
+        },
+        {
+          path: '/Tinymce',
+          component: Tinymce,
+          meta: { title: '用户反馈' }
         },
         {
           path: '/404',

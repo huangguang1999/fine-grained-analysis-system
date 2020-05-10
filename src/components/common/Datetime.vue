@@ -36,6 +36,9 @@ export default{
   methods: {
     updateTime () {
       const _this = this
+      // 改变日期
+      this.date = '2018-10-1'
+      this.day = '星期一'
       this.timeInterval = setInterval(function () {
         _this.time = moment().format('HH:mm:ss')
       }, 1000)

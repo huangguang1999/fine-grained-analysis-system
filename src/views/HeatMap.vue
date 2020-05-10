@@ -1,10 +1,21 @@
 <template>
   <div style="width:100%;height:105%;overflow:hidden">
-    <el-card body-style="padding:0;" style="margin-bottom:2px;">
-      <div style="display:flex">
-        <div style="width:40%;"><Datetime></Datetime></div>
-        <div style="width:20%;color:#19CAAD;font-size:30px;display:flex;justify-content:center;align-items:center">实时热力图</div>
-        <div style="width:40%;float:left;display:flex;align-items:center"><el-checkbox v-model="checked">每五分钟自动刷新</el-checkbox></div>
+    <el-card body-style="padding:0;" class="map-card">
+      <div class="map-content">
+        <div class="map-content-date">
+          <Datetime></Datetime>
+        </div>
+        <div class="map-content-title">实时热力图</div>
+        <div class="map-content-check">
+          <el-checkbox v-model="checked">每五分钟自动刷新</el-checkbox>
+            <div class="map-content-switch">
+              <el-tooltip effect="dark" content="3D地图">
+                <router-link to="/3DHeatMap">
+                  <img src="./img/earth.png"/>
+                </router-link>
+              </el-tooltip>
+            </div>
+        </div>
       </div>
     </el-card>
     <div id="container"></div>
@@ -15,15 +26,11 @@
 </template>
 
 <script>
-import RadarChart from '../echarts/RadarChart'
-import request from '../../axios/index'
-import Datetime from '../common/Datetime'
-import ScatterChart from '../echarts/ScatterChart'
+import request from '../axios'
+import Datetime from '../components/common/Datetime'
 export default {
   components: {
-    RadarChart,
-    Datetime,
-    ScatterChart
+    Datetime
   },
   data () {
     return {
@@ -67,7 +74,9 @@ export default {
       checked: true,
       timer: null,
       heatmap: {},
-      map: {}
+      map: {},
+      value1: true,
+      value2: true
     }
   },
   mounted () {
@@ -86,35 +95,35 @@ export default {
       for (let i = 0; i < 500; i++) {
         this.heatmapData.push({
           'lng': 123.5 - Math.random() * 0.5,
-          'lat': 41.75 + Math.random() * 0.1,
+          'lat': 41.75 + Math.random() * 0.15,
           'count': 1000 * Math.random()
         })
       }
       for (let i = 0; i < 500; i++) {
         this.heatmapData.push({
           'lng': 123.5 + Math.random() * 0.5,
-          'lat': 41.75 - Math.random() * 0.1,
+          'lat': 41.75 - Math.random() * 0.15,
           'count': 1000 * Math.random()
         })
       }
       for (let i = 0; i < 500; i++) {
         this.heatmapData.push({
           'lng': 123.5 + Math.random() * 0.5,
-          'lat': 41.75 + Math.random() * 0.1,
+          'lat': 41.75 + Math.random() * 0.15,
           'count': 1000 * Math.random()
         })
       }
       for (let i = 0; i < 500; i++) {
         this.heatmapData.push({
           'lng': 123.5 - Math.random() * 0.5,
-          'lat': 41.75 - Math.random() * 0.1,
+          'lat': 41.75 - Math.random() * 0.15,
           'count': 1000 * Math.random()
         })
       }
       // eslint-disable-next-line no-undef
       this.map = new AMap.Map('container', {
         resizeEnable: true,
-        center: [123.5, 41.72],
+        center: [123.5, 41.73],
         zoom: 12
       })
       this.updateData()
@@ -125,7 +134,7 @@ export default {
         // eslint-disable-next-line no-undef
         that.heatmap = new AMap.Heatmap(that.map, {
           radius: 25, // 给定半径
-          opacity: [0, 0.8]
+          opacity: [0, 0.8],
         })
         that.heatmap.setDataSet({
           data: that.heatmapData,
@@ -139,11 +148,11 @@ export default {
     },
     loopingData () {
       this.timer = setInterval(() => {
-        this.heatmapData.splice(0,5)
+        this.heatmapData.splice(0, 5)
         this.updateData()
         this.heatmapData.push({
           'lng': 123.8 - Math.random() * 0.5,
-          'lat': 41.68 + Math.random() * 0.1,
+          'lat': 41.68 + Math.random() * 0.15,
           'count': 100 * Math.random()
         })
       }, 1000)
@@ -178,9 +187,74 @@ export default {
 }
 </script>
 
-<style scoped>
-#container {
-  width: 100%;
-  height: 1000px;
-}
+<style scoped lang="less">
+  #container {
+    width: 100%;
+    height: 1000px;
+  }
+
+  .map-card {
+    margin-bottom:2px;
+
+    .map-content {
+      display:flex;
+
+      .map-content-date {
+        width:40%;
+      }
+
+      .map-content-title {
+        width:20%;
+        color:#000000;
+        font-size:30px;
+        display:flex;
+        justify-content:center;
+        align-items:center
+      }
+
+      .map-content-check {
+        width:40%;
+        display:flex;
+        align-items:center;
+
+        .map-content-switch {
+          width: 200px;
+          margin-left: 50px;
+
+          img {
+            animation: earthRotate 5s linear infinite;
+            -webkit-animation:earthRotate 5s linear infinite;
+            animation-play-state:running;
+            -webkit-animation-play-state:running;
+          }
+
+          img:hover {
+            animation-play-state:paused;
+            -webkit-animation-play-state:paused;
+          }
+
+          @keyframes earthRotate {
+            0% {
+              transform:rotate(0deg)
+            }
+            100% {
+              transform:rotate(360deg)
+            }
+          }
+
+          @-webkit-keyframes earthRotate
+          {
+            0% {
+              transform:rotate(0deg);
+            }
+            100% {
+              transform:rotate(360deg);
+            }
+          }
+        }
+      }
+
+    }
+
+  }
 </style>

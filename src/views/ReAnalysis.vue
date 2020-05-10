@@ -8,27 +8,27 @@
       <h2>驻留空间排名</h2>
       <RankingList :tableData="tableDataG" :tableColumn="tableColumnG" height="400"></RankingList>
     </div>
-<!--    <div class="re-img">-->
-<!--      <img src="../../assets/zhuliu.jpg" style="width: 80%" />-->
-<!--    </div>-->
-    <el-card body-style="padding:0;"  class="mode-header">
-      <div style="display:flex;justify-content: center;align-items: center">
-        <div><h1>沈阳驻留分析</h1></div>
+    <el-card body-style="padding:0;">
+      <div class="mode-header">
+        <div class="mode-datetime">
+          <Datetime></Datetime>
+        </div>
+        <div class="mode-header-title">
+          <h1>沈阳驻留分析</h1>
+        </div>
+        <div class="mode-right">
+          <router-link to="/Tinymce"><el-button type="info">用户反馈</el-button></router-link>
+          <el-button type="success" @click="outPdf">分析报告</el-button>
+        </div>
       </div>
-      <div class="mode-right">
-        <el-button type="info">用户反馈</el-button>
-      </div>
-      <div class="mode-datetime"><Datetime></Datetime></div>
     </el-card>
-    <el-card>
-      <div id="container"></div>
-    </el-card>
+    <div id="container"></div>
   </div>
 </template>
 
 <script>
-import Datetime from '../common/Datetime'
-import RankingList from '../tools/RankingList'
+import Datetime from '../components/common/Datetime'
+import RankingList from '../components/tools/RankingList'
 export default {
   components: {
     Datetime,
@@ -149,7 +149,7 @@ export default {
   },
   mounted () {
     this.initMap()
-    this.loopingData()
+    // this.loopingData()
   },
   beforeDestroy() {
     clearInterval(this.timer)
@@ -166,7 +166,7 @@ export default {
       this.map = new AMap.Map('container', {
         resizeEnable: true,
         center: [123.5, 41.75],
-        zoom: 10,
+        zoom: 11,
         mapStyle: 'amap://styles/grey'
       })
       this.addDot()
@@ -188,9 +188,6 @@ export default {
           clickable: true
         })
         this.circleMarker.setMap(this.map)
-        for(let item in this.circleMarker) {
-          console.log(item)
-        }
       }
     },
     loopingData () {
@@ -217,38 +214,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
   #container {
     width: 100%;
-    height: 550px;
+    height: 1000px;
   }
 
   .mode-header {
+    display: flex;
+    width: 100%;
     margin-bottom:2px;
-  }
 
-  .mode-header:after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 20px;
-    background-color: #ffffff;
-    left: 43%;
-    z-index: 9;
-    border-radius: 2px;
-  }
+    .mode-datetime {
+      width: 180px;
+      margin: auto 0;
+    }
 
-  .mode-datetime {
-    position: absolute;
-    top: 60px;
-    left: 44.5%;
-    z-index: 10;
-  }
+    .mode-header-title {
+      width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-  .mode-right {
-    position: absolute;
-    right: 30px;
-    top: 25px;
+    .mode-right {
+      margin: auto 10px auto 0;
+    }
   }
 
   .ranking-left {
@@ -277,11 +267,4 @@ export default {
     color: #19CAAD;
   }
 
-  .re-img {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    z-index: 10 ;
-    width: 50%;
-  }
 </style>

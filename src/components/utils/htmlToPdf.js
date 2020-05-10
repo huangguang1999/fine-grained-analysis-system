@@ -39,7 +39,7 @@ export default {
           if (renderedHeight < canvas.height) {
             pdf.addPage()
           } // 如果后面还有内容，添加一个空页
-          // delete page;
+          // delete views;
         }
         pdf.save(htmlTitle + currentTime)
       })

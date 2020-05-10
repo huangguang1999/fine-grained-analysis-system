@@ -106,13 +106,14 @@ export default {
     left: 0;
     top: 70px;
     bottom: 0;
+    overflow-x: hidden;
     overflow-y: scroll;
 }
 .sidebar::-webkit-scrollbar {
     width: 10px;
 }
 .sidebar-el-menu:not(.el-menu--collapse) {
-    width: 200px;
+    width: 150px;
 }
 .sidebar > ul {
     height: 100%;
