@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="content">
     <Drawing />
-    <div id="container"></div>
+<!--    <div id="container"></div>-->
   </div>
 </template>
 
@@ -14,15 +14,6 @@ export default {
   data: function () {
     return {
       map: {},
-      infoWindow: {},
-      content: [],
-      items: [
-        {name: '体育', value: 95, max: '100'},
-        {name: '数学', value: 55, max: '100'},
-        {name: '化学', value: 75, max: '100'},
-        {name: '劳动', value: 85, max: '100'},
-        {name: '烹饪', value: 85, max: '100'}
-      ],
       path0: [
         [123.589181, 41.974792],
         [123.581181, 42.119792],
@@ -63,11 +54,10 @@ export default {
       // eslint-disable-next-line no-undef
       this.map = new AMap.Map('container', {
         resizeEnable: false,
-        center: [123.0, 41.9],
-        zoom: 15,
+        center: [124.0, 41.7],
+        zoom: 10,
         mapStyle: 'amap://styles/grey'
       })
-      this.addRoute()
       this.addMarker()
       this.addPolygon()
     },
@@ -93,7 +83,7 @@ export default {
           strokeOpacity: 0.2,
           fillOpacity: 0.4,
           fillColor: '#1791fc',
-          zIndex: 50,
+          zIndex: 50
         })
         array.push(polygon)
       }
@@ -447,16 +437,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  content {
+    width: 100%;
+    height: 100%;
+  }
   #container {
     width: 100%;
     height: 1000px;
   }
 
-  .radarStyle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
 </style>

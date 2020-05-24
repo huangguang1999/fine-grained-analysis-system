@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <div class="ranking-left">
       <h2>驻留时间片段排名</h2>
       <RankingList :tableData="tableData" :tableColumn="tableColumn"></RankingList>
@@ -22,17 +22,19 @@
         </div>
       </div>
     </el-card>
-    <div id="container"></div>
+    <AbnormalAggregation></AbnormalAggregation>
   </div>
 </template>
 
 <script>
 import Datetime from '../components/common/Datetime'
 import RankingList from '../components/tools/RankingList'
+import AbnormalAggregation from './residencyAnalysis/AbnormalAggregation'
 export default {
   components: {
     Datetime,
-    RankingList
+    RankingList,
+    AbnormalAggregation
   },
   data () {
     return {
@@ -218,6 +220,10 @@ export default {
   #container {
     width: 100%;
     height: 1000px;
+  }
+  .content {
+    width: 100%;
+    height: 100%;
   }
 
   .mode-header {

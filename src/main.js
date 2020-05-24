@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './mock/mock.js'
 import echarts from 'echarts'
 import axios from 'axios'
-import htmlToPdf from './components/utils/htmlToPdf'
+import htmlToPdf from './utils/htmlToPdf'
 Vue.prototype.$ajax = axios
 Vue.prototype.$echarts = echarts
 Vue.use(htmlToPdf)

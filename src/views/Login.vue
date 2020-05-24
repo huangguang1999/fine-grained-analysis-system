@@ -1,7 +1,8 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">城市群体时空行为模式挖掘系统</div>
+            <img src="../../static/logo.png" class="ms-img"/>
+            <div class="ms-title">城市群体时空行为模式挖掘系统&nbsp;&nbsp;&nbsp;</div>
             <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="username">
@@ -46,7 +47,7 @@ export default {
         if (valid && this.login(this.param.username, this.param.password)) {
           this.$message.success('登录成功')
           localStorage.setItem('ms_username', this.param.username)
-          this.$router.push('/heatmap')
+          this.$router.push('/3DheatMap')
         } else {
           this.$message.error('请输入账号和密码')
           console.log('error submit!!')
@@ -65,6 +66,7 @@ export default {
       //     return false
       //   }
       // })
+      // login(this.params)
       return true
     }
   }
@@ -76,7 +78,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../assets/img/bg.png);
+    background-image: url(../assets/img/login-bg.jpg);
     background-size: 100%;
     background-color: #33baff;
 }
@@ -100,6 +102,11 @@ export default {
 }
 .ms-content {
     padding: 30px 30px;
+}
+.ms-img {
+  width: 50px;
+  height: 50px;
+  float: left;
 }
 .login-btn {
     text-align: center;

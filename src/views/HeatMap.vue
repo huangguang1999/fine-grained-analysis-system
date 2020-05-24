@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import request from '../axios'
+import request from '../api'
 import Datetime from '../components/common/Datetime'
 export default {
   components: {

@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import request from '../axios'
+import request from '../api'
 export default {
   components: {
     request

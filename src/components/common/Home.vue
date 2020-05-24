@@ -56,6 +56,6 @@ export default {
         box-sizing: border-box;
     }
     .content-collapse {
-        left: 65px;
+        left: 63px;
     }
 </style>
