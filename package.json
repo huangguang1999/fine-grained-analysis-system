@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "d3": "^5.16.0",
     "echarts": "^4.6.0",
     "element-ui": "^2.13.0",
     "html2canvas": "^1.0.0-rc.5",
@@ -63,6 +64,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "pug-html-loader": "^1.1.5",
     "rimraf": "^2.6.0",
     "sass-loader": "^7.3.1",
     "semver": "^5.3.0",
