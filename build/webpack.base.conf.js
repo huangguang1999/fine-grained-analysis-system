@@ -32,7 +32,9 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   externals: {
-    'AMap': 'AMap'
+    'AMap': 'AMap',
+    'vue': 'Vue',
+    'element-ui': 'ElementUI'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

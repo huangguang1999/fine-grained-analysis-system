@@ -1,9 +1,16 @@
-import {request} from './index'
+import axios from 'axios'
 
-function login (body) {
-  return request('/users/sign', body).then(response => response.data)
-}
+export function login (userInfo) {
+  const url = 'http://localhost:5000/api/users/login'
 
-export default {
-  login
+  const data = Object.assign({}, userInfo)
+
+  return axios
+    .post(url, data)
+    .then(response => {
+      return Promise.resolve(response.data)
+    })
+    .catch(err => {
+      throw err
+    })
 }

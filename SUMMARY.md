@@ -500,3 +500,67 @@ A网站和B网站是同一家公司的关联服务。现在要求，用户只要
 
 ## 微服务
 
+
+
+## CDN引入
+
+使用CDN加速引入第三方包
+
+以vue、element为例：
+
+**步骤：**
+
+1.引入CND链接
+
+```html
+<body>
+  <div id="app"></div>
+  <!-- CDN方式引入vue -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- CDN方式引入element-ui -->
+  <script src="https://unpkg.com/element-ui@2.8.2/lib/index.js"></script>
+</body>
+```
+
+2.添加externals属性
+
+vue-cli 2
+
+````javascript
+module.exports = {
+  context: path.resolve(__dirname, '../'),
+  entry: {
+    function: './src/main.js'
+  },
+  externals:{
+    'vue': 'Vue',
+    'element-ui': 'ElementUI'
+  }
+  ...
+}
+````
+
+
+
+## 资源压缩
+
+**关闭sourcemap**，包的体积减少将近一半，sourcemap是为了方便线上调试用的，因为线上代码都是压缩过的，导致调试极为不便，而有了sourcemap，就等于加了个索引字典，出了问题可以定位到源代码的位置。 但是，这个玩意是每个js都带一个sourcemap，有时sourcemap会很大，拖累了整个项目加载速度，为了节省加载时间，我们将其关闭掉。就这一句话就可以关闭sourcemap了，很简单。
+
+```
+// 路径：/config/index.js
+/**
+ * Source Maps
+ */
+
+productionSourceMap: false,
+```
+
+
+
+## 使用**gzip压缩**
+
+文件体积缩小，优化了首屏加载。
+
+
+
+## 异步组件

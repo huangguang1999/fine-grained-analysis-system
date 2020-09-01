@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>fine-grained-analysis-system</title>
+    <!-- 地图相关样式表 -->
     <link rel="shortcut icon" type="image/x-icon" href="static/favicon.png" rel="external nofollow" >
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
     <link rel="stylesheet" type="text/css" href="https://a.amap.com/jsapi_demos/static/bezier/bezier.css">
+    <!-- element相关样式表 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <style>
       html,body {
         width: 100%;
@@ -19,7 +22,12 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <!-- CDN方式引入vue -->
+    <script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
+    <!-- CDN方式引入element-ui -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   </body>
+  <!-- 高德地图相关js -->
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=dac037c8f308ed9e05985961934ed3a4&plugin=AMap.CustomLayer,AMap.ControlBar,AMap.Heatmap"></script>
   <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
   <!--3D热力图模块-->

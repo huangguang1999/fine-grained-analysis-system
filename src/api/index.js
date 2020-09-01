@@ -1,13 +1,17 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://127.0.0.1:8080'
+const BASE_URL = 'http://localhost:5000/'
 
-function request (url, config) {
+export function request (url, method, params, config) {
   url = BASE_URL + url
   // 创建ajax实例
+  let p = {
+    email: params.email,
+    password: params.password
+  }
   let instance = axios.create({
-    method: '', // 请求方法
-    params: {}, // URL参数
+    method: method, // 请求方法
+    params: p, // URL参数
     baseURL: url, // url地址
     headers: {// 跨域请求头
       'Access-Control-Request-Headers': '*',
@@ -51,8 +55,4 @@ function request (url, config) {
   })
   // 发送网络请求
   return instance(config)
-}
-
-export default {
-  request
 }

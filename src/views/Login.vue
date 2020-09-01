@@ -3,7 +3,7 @@
         <div class="ms-login">
             <img src="../../static/logo.png" class="ms-img"/>
             <div class="ms-title">城市群体时空行为模式挖掘系统&nbsp;&nbsp;&nbsp;</div>
-            <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
+            <el-form :model="param" :rules="rules" ref="loginInput" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="username">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
@@ -20,7 +20,7 @@
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
+                    <el-button type="primary" @click="loginIn(param.username, param.password)">登录</el-button>
                 </div>
             </el-form>
         </div>
@@ -28,12 +28,13 @@
 </template>
 
 <script>
+import {login} from '../api/user'
 export default {
   data: function () {
     return {
       param: {
-        username: 'admin',
-        password: '123123'
+        username: 'admin@163.com',
+        password: '123456'
       },
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -43,31 +44,42 @@ export default {
   },
   methods: {
     submitForm () {
-      this.$refs.login.validate(valid => {
-        if (valid && this.login(this.param.username, this.param.password)) {
-          this.$message.success('登录成功')
-          localStorage.setItem('ms_username', this.param.username)
-          this.$router.push('/3DheatMap')
-        } else {
-          this.$message.error('请输入账号和密码')
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    // 鉴权
-    login (username, password) {
-      // this.$ajax.post('api/login').then((response) => {
-      //   const resUser = ''
-      //   const resPass = ''
-      //   if (username === resUser && password === resPass) {
-      //     return true
+      const that = this
+      // this.$refs.loginInput.validate(valid => {
+      //   console.log('========')
+      //   console.log(that.loginIn(this.param.username, this.param.password))
+      //   if (valid && that.loginIn(this.param.username, this.param.password)) {
+      //     this.$message.success('登录成功')
+      //     this.$router.push('/3DheatMap')
       //   } else {
+      //     this.$message.error('请输入账号和密码')
+      //     console.log('error submit!!')
       //     return false
       //   }
       // })
-      // login(this.params)
-      return true
+      console.log(this.loginIn(this.param.username, this.param.password))
+      if (this.loginIn(this.param.username, this.param.password)) {
+        this.$router.push('/3DheatMap')
+      }
+    },
+    // 鉴权
+    loginIn (username, password) {
+      const params = {
+        email: username,
+        password: password
+      }
+      login(params).then((res) => {
+        if (res.success) {
+          localStorage.setItem('token', res.data.data.token)
+          this.$router.push('/3DheatMap')
+          return true
+        } else {
+          console.log(res.msg)
+          return false
+        }
+      }).catch(err => {
+        throw err
+      })
     }
   }
 }

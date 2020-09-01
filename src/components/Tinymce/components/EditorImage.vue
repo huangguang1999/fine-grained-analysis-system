@@ -40,7 +40,7 @@ export default {
       default: '#1890ff'
     }
   },
-  data() {
+  data () {
     return {
       dialogVisible: false,
       listObj: {},
