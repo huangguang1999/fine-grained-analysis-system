@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../views/Login'
-import Map from '../views/Map'
-import TDMap from '../views/3DMap'
 import Home from '../components/common/Home'
-import DotMarker from '../views/DotMarker'
 import HeatMap from '../views/HeatMap'
 import TDHeatMap from '../views/3DHeatMap'
 import OutHeatMap from '../views/OutHeatMap'
@@ -12,6 +9,7 @@ import TripAnalysis from '../views/TripAnalysis'
 import TripMode from '../views/TripMode'
 import ReAnalysis from '../views/ReAnalysis'
 import Tinymce from '../views/Tinymce'
+import Chart from '../views/chartD3/Chart'
 import F04 from '../views/404'
 Vue.use(Router)
 
@@ -59,6 +57,11 @@ export default new Router({
           path: '/Tinymce',
           component: Tinymce,
           meta: { title: '用户反馈' }
+        },
+        {
+          path: '/Chart',
+          component: Chart,
+          meta: { title: '测试页面' }
         },
         {
           path: '/404',

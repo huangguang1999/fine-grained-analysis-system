@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <Drawing />
-<!--    <div id="container"></div>-->
+    <div id="container"></div>
   </div>
 </template>
 

@@ -80,6 +80,11 @@ export default {
           icon: 'el-icon-map-location',
           index: 'ReAnalysis',
           title: '驻留分析'
+        },
+        {
+          icon: 'el-icon-map-location',
+          index: 'Chart',
+          title: '测试页面'
         }
       ]
     }
